@@ -1,0 +1,9 @@
+function [value,isterminal,direction] = event_function(t,y)
+r_e = sqrt((y(1))^2+(y(2))^2+(y(3))^2); %current radius from earth
+re = 6371; %radius of the earth
+p_m = luna(t); %get lunar position
+r_m = sqrt((y(1)-p_m(1))^2+(y(2)-p_m(2))^2+(y(3)-p_m(3))^2); %current radius from moon
+rm = 1737; % radius of the moon
+value = [r_e-re,r_m-rm]; %determine if we have impacted an object
+isterminal = [1,1]; %stops the integration
+direction = [-1,-1]; %entering an object only
